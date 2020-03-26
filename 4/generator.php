@@ -43,9 +43,10 @@ function generatorCheck(&$els)
     }
     $res = [];
     $sum = 0;
-    foreach ($arr as $key => $value) {
-        $k = explode(" ", $key);
-        $sum += (int)$k[count($k) - 1];
+
+    foreach ($arr as $v)
+    {
+        $sum+=$v;
     }
     for ($i = 0; $i < count($arr); $i++) {
         $key = key($arr);
@@ -53,7 +54,7 @@ function generatorCheck(&$els)
         $res[$i] = [
             "text" => $key,
             "count" => $arr[$key],
-            "calculated_probability" => (int)$k[count($k) - 1] / $sum
+            "calculated_probability" => $arr[$key] / $sum
         ];
         next($arr);
     }
