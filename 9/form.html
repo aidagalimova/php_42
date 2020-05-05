@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Логи</title>
+</head>
+<body>
+<form action="index.php" method="post">
+    <label>
+    <textarea name="text"></textarea><br>
+    Вывести логи <br>
+    <input type="radio" name = "log" value="browser">в браузер <br>
+    <input type="radio" name = "log" value="file">в файл<br>
+    Имя файла
+    <input name="file" type="text"> <br><br>
+    Дата и время: <br>
+    <input type="radio" name="format" value="time">Только время <br>
+    <input type="radio" name="format" value="time_date">Время и дата <br>
+    <input type="radio" name="format" value="off">Без даты и времени <br>
+    <input type="submit">
+    </label>
+</form>
+</body>
+</html>
