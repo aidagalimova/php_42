@@ -27,24 +27,37 @@ function get_calendar($month)
         $arr[$cur_week][$cur_day] = $time;
         $cur_day++;
     }
-    if (count($arr[0]) != 7) {
+    if (isset($arr[0]) && count($arr[0]) != 7) {
         $t = array_fill(0, 7 - count($arr[0]), "");
         $arr[0] = array_merge($t, $arr[0]);
     }
-    buildCalendar($arr);
+    buildCalendar($arr, $month);
 }
 
-function buildCalendar($month)
+function buildCalendar($month, $monthNumber)
 {
+    $curMonth = date('m');
+    $curDay = 0;
+    if ($curMonth == $monthNumber) {
+        $curDay = date('d');
+    }
     $calendar = "<table>";
     foreach ($month as $week) {
         $calendar = $calendar . "<tr>";
         foreach ($week as $day) {
             if (!is_string($day)) {
                 if ($day->format('D') == "Sat" || $day->format('D') == "Sun") {
-                    $calendar = $calendar . "<td style='color: red'>{$day->format('d')}</td>";
+                    if ($curDay == $day->format('d')) {
+                        $calendar = $calendar . "<td style='color: red'><b>{$day->format('d')}</b></td>";
+                    } else {
+                        $calendar = $calendar . "<td style='color: red'>{$day->format('d')}</td>";
+                    }
                 } else {
-                    $calendar = $calendar . "<td>{$day->format('d')}</td>";
+                    if ($curDay == $day->format('d')) {
+                        $calendar = $calendar . "<td><b>{$day->format('d')}</b></td>";
+                    } else {
+                        $calendar = $calendar . "<td>{$day->format('d')}</td>";
+                    }
                 }
             } else {
                 $calendar = $calendar . "<td>{$day}</td>";
